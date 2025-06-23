@@ -3,10 +3,10 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
 
-// ✅ Allowlisted Frontend Origins
+// ✅ Allowlisted Frontend Origins (✔️ Include your Vercel frontend)
 const allowedOrigins = [
   'http://localhost:3000', // Local dev
-  'https://hrm-system-production.up.railway.app', // Vercel frontend
+  'https://hrm-system-git-main-vedjadhav2816s-projects.vercel.app', // Vercel frontend
 ];
 
 // ✅ CORS Configuration
@@ -26,7 +26,7 @@ app.use(cors({
 // ✅ Middleware
 app.use(express.json());
 
-// ✅ MySQL connection
+// ✅ MySQL Connection (Railway or local)
 const db = mysql.createConnection({
   host: process.env.MYSQL_HOST || 'localhost',
   user: process.env.MYSQL_USER || 'root',
@@ -105,7 +105,7 @@ app.delete('/departments/:id', (req, res) => {
   });
 });
 
-// ✅ Start Server (critical: bind to 0.0.0.0 on Railway)
+// ✅ Start Server (for Railway)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Backend server running on port ${PORT}`);
