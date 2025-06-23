@@ -3,15 +3,32 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
 
-// Middleware
-app.use(cors());
+// ✅ Allowlisted Frontend Origins
+const allowedOrigins = [
+  'http://localhost:3000', // Local dev
+  'https://hrm-system-production.up.railway.app', // Vercel live frontend (replace if needed)
+];
+
+// ✅ CORS Configuration
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('❌ Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
+
+// ✅ Middleware
 app.use(express.json());
 
 // ✅ MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root', // Change if your DB has a different password
+  host: 'localhost', // change to Railway host if hosted DB
+  user: 'root',      // Railway DB user
+  password: 'root',  // Railway DB password
   database: 'internship'
 });
 
@@ -93,6 +110,6 @@ app.delete('/departments/:id', (req, res) => {
   });
 });
 
-// Start backend
-const PORT = 5000;
+// ✅ Start backend
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Backend server running on port ${PORT}`));
