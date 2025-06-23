@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import axios from './axios';
+import axios from '../axios'; // or './axios' based on location
+
 import { useNavigate } from 'react-router-dom';
 
 const AddDepartment = () => {
