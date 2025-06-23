@@ -12,7 +12,7 @@ const AddDepartment = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/departments', {
+       await axios.post('/departments', {
         name,
         description,
       });
