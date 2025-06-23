@@ -1,6 +1,8 @@
 // src/axios.js
 import axios from 'axios';
 
-export default axios.create({
-  baseURL: 'https://hrm-system-production.up.railway.app',
+const instance = axios.create({
+  baseURL: 'https://hrm-api-production.up.railway.app', // ✅ your actual backend URL
 });
+
+export default instance;
