@@ -8,18 +8,18 @@ function EditDepartment() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/departments/${id}`).then((res) => {
-      setForm(res.data);
-    });
-  }, [id]);
+  axios.get(`/departments/${id}`).then((res) => {
+    setForm(res.data);
+  });
+}, [id]);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await axios.put(`http://localhost:5000/departments/${id}`, form);
-    navigate('/');
-  };
+  e.preventDefault();
+  await axios.put(`/departments/${id}`, form);
+  navigate('/');
+};
 
   return (
     <>

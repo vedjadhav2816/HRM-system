@@ -6,19 +6,18 @@ function DepartmentDashboard() {
   const [departments, setDepartments] = useState([]);
 
   const fetchDepartments = async () => {
-    const res = await axios.get('http://localhost:5000/departments');
-    setDepartments(res.data);
-  };
+  const res = await axios.get('/departments');
+  setDepartments(res.data);
+};
 
   useEffect(() => {
     fetchDepartments();
   }, []);
 
-  const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/departments/${id}`);
-    fetchDepartments();
-  };
-
+ const handleDelete = async (id) => {
+  await axios.delete(`/departments/${id}`);
+  fetchDepartments();
+};
   return (
     <>
       <style>
